@@ -8,7 +8,6 @@ module.exports = FindTheTest =
 
   activate: (state) ->
     @findTheTestView = new FindTheTestView(state.findTheTestViewState)
-    @modalPanel = atom.workspace.addModalPanel(item: @findTheTestView.getElement(), visible: false)
 
     # Events subscribed to in atom's system can be easily cleaned up with a CompositeDisposable
     @subscriptions = new CompositeDisposable
@@ -17,7 +16,6 @@ module.exports = FindTheTest =
     @subscriptions.add atom.commands.add 'atom-workspace', 'find-the-test:toggle': => @toggle()
 
   deactivate: ->
-    @modalPanel.destroy()
     @subscriptions.dispose()
     @findTheTestView.destroy()
 
@@ -27,7 +25,9 @@ module.exports = FindTheTest =
   toggle: ->
     console.log 'FindTheTest was toggled!'
 
-    if @modalPanel.isVisible()
-      @modalPanel.hide()
-    else
-      @modalPanel.show()
+    # Get the path of the current file
+    pane = atom.workspace.getActivePane()
+    console.log pane.activeItem.buffer.file.path
+
+    # Get the paths for the current directory
+    console.log atom.project.getPaths()
