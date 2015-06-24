@@ -5,6 +5,7 @@ module.exports = FindTheTest =
   findTheTestView: null
   modalPanel: null
   subscriptions: null
+  pathLoaderService: null
 
   activate: (state) ->
     @findTheTestView = new FindTheTestView(state.findTheTestViewState)
@@ -30,4 +31,9 @@ module.exports = FindTheTest =
     console.log pane.activeItem.buffer.file.path
 
     # Get the paths for the current directory
-    console.log atom.project.getPaths()
+    console.log @pathLoaderService
+    console.log @pathLoaderService.paths()
+
+  pathLoader: (service) ->
+    console.log "Loaded pathLoader!"
+    @pathLoaderService = service

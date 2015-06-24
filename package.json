@@ -14,5 +14,12 @@
     "atom": ">=0.174.0 <2.0.0"
   },
   "dependencies": {
+  },
+  "consumedServices": {
+    "atom-loaded-paths": {
+      "versions": {
+        "1.0.0": "pathLoader"
+      }
+    }
   }
 }
